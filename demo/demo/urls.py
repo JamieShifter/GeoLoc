@@ -19,8 +19,17 @@ from django.urls import path
 
 import new_api.views as views
 import new_api.api_views as api_views
+from rest_framework_simplejwt import views as jwt_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/geoloc/', api_views.IP_GeoLocation.as_view()),
+    path('redirect/', views.redirect_view),
+    path('get/<str:ip_address>/', views.get_local),
+    path('get/', views.get_local),
+    path('api/v1/geoloc/', api_views.Ip_GeoLocation.as_view()),
+    path('api/v1/geoloc/new', api_views.GeolocationCreate.as_view()),
+    path('api/v1/geoloc/<int:id>/', api_views.GeolocationRetrieveUpdateDestroy.as_view()),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]
