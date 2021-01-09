@@ -32,4 +32,8 @@ urlpatterns = [
     path('api/v1/geoloc/<int:id>/', api_views.GeolocationRetrieveUpdateDestroy.as_view()),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('', views.home, name='home'),
 ]
+
+handler404 = 'new_api.views.error_404'
+handler500 = 'new_api.views.error_500'

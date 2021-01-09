@@ -28,7 +28,7 @@ SECRET_KEY = '_@bbgg$-6*j-j=(-gexi9f9ww+hdiggx59(w%8=wzk&u-(*u#b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sheltered-meadow-38505.herokuapp.com']
 
 
 # Application definition
@@ -82,12 +82,17 @@ WSGI_APPLICATION = 'demo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dedqvaqs7oa3ko',
+        'USER': 'nppdgadlhvnvsj',
+        'PASSWORD': 'e36a8c0bcd63949d74b6bd5315b22e94cf8cfd6cbb7eb23aaffe5458e25ccbd0',
+        'HOST': 'ec2-52-44-46-66.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
 REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'new_api.exception_handler.custom_exception_handler',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
